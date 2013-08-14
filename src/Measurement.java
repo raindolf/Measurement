@@ -7,6 +7,10 @@ public class Measurement {
         this.unit = unit;
     }
 
+    public int convertToBaseUnit(){
+        return this.unit.getBaseUnit()*this.value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -14,8 +18,7 @@ public class Measurement {
 
         Measurement that = (Measurement) o;
 
-        if (value != that.value) return false;
-        if (unit != null ? !unit.equals(that.unit) : that.unit != null) return false;
+        if (this.convertToBaseUnit() != that.convertToBaseUnit()) return false;
 
         return true;
     }
@@ -26,4 +29,5 @@ public class Measurement {
         result = 31 * result + (unit != null ? unit.hashCode() : 0);
         return result;
     }
+
 }
